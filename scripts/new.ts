@@ -1,6 +1,9 @@
 import chalk from "chalk";
 import fs from "fs";
 import yargs from "yargs/yargs";
+import indexTs from "./templates/indexTs";
+import indexVue from "./templates/indexVue";
+import packageJson from "./templates/packageJson";
 const { hideBin } = require("yargs/helpers");
 
 const argv = yargs(hideBin(process.argv)).argv;
@@ -34,4 +37,27 @@ const newPackageNameCamelCase: string = newPackageName.split('-').map(el => el[0
 console.log(chalk.green(`${newPackagePath} created`));
 fs.mkdirSync(newPackagePath);
 fs.mkdirSync(newPackagePath + "/src");
-console.log(newPackageNameCamelCase);
+
+
+const filesToCreate = [
+    {
+        filePath: "/src/index.vue",
+        content: indexVue({ packageName: newPackageNameCamelCase })
+    },
+    {
+        filePath: "/package.json",
+        content: packageJson({ packageName: newPackageName })
+    },
+    {
+        filePath: "/index.ts",
+        content: indexTs({ packageName: newPackageNameCamelCase })
+    },
+]
+
+filesToCreate.forEach((file) => {
+    const fileBuffer = new Uint8Array(Buffer.from(file.content));
+    fs.writeFileSync(`${newPackagePath}${file.filePath}`, fileBuffer);
+    console.log(`Creating File: ${newPackagePath}${file.filePath}`);
+})
+
+console.log(chalk.green(`Done creating ${newPackageName}`));
