@@ -1,5 +1,5 @@
 export default ({ packageName }: { packageName: string }): string => {
-    return `<template>
+  return `<template>
   <div class="mgr8-${packageName}">
     <!-- your html -->
   </div>
@@ -14,10 +14,5 @@ export default defineComponent({
   },
 });
 </script>
-<style scoped>
-.mgr8-${packageName} {
-  /* your style */
-}
-</style>
 `;
 };
