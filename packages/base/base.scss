@@ -2,11 +2,13 @@
 @use "./reset.scss";
 
 // exports
-@use "./colors/exports.scss";
+@use "./colors/exports.scss" as colors;
+@use "./typography/exports.scss" as typography;
 
 body,
 [data-theme] {
-    // font-family: var(--font-primary);
+    font-family: var(--font-primary);
+    font-size: var(--font-base-size);
     background: var(--bkg-color);
 }
 
