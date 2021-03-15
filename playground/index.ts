@@ -1,3 +1,4 @@
+import "@mgr8-components/base/base.scss";
 import { createApp } from "vue";
 import Playground from "./playground.vue";
 

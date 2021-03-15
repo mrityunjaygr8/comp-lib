@@ -1,6 +1,8 @@
 <template>
-  <div class="playground">Hello World</div>
-  <mgr8-button>Button asd</mgr8-button>
+  <div class="playground" data-theme="default">
+    Hello World
+    <mgr8-button>Button asd</mgr8-button>
+  </div>
 </template>
 
 <script>
